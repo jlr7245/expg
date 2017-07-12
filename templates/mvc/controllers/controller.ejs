@@ -1,0 +1,22 @@
+<% let capRoute = route.charAt(0).toUpperCase() + route.slice(1); %>
+<% /* TODO: modify so this works for nested controllers */
+/* TODO: Modify so the plurals are handled correctly */
+/* TODO: Allow API flag to return res.json or res.render */ %>
+const <%=capRoute%> = require('../models/<%-route%>');
+
+const <%-route%>Controller = {};
+
+<%-route%>Controller.index = (req, res) => {
+  <%-capRoute%>.findAll()
+    .then(<%-route%> => {
+      res.json({
+        message: 'ok',
+        data: {
+          <%-route%>,
+        },
+      });
+    }).catch((err) => {
+      console.log(err);
+      res.status(400).json({message: '400', err});
+    });
+}

@@ -1,0 +1,32 @@
+const express = require('express');
+const <%-route%>Routes = express.Router();
+
+<% /* TODO: needs fixed so it works for /controllers/api/whatever */ %>
+const controller = require('../controllers/<%-route%>-controller');
+
+<%-route%>Routes.route('/')
+  .get((req, res, next) => controller.index)
+  .post((req, res, next) => controller.create)
+  .put((req, res, next) => {
+    next(new Error('not implemented'));
+  })
+  .patch((req, res, next) => {
+    next(new Error('not implemented'));
+  })
+  .delete((req, res, next) => {
+    next(new Error('not implemented'));
+  });
+
+<%-route%>Routes.route('/:id')
+  .get((req, res, next) => controller.show)
+  .post((req, res, next) => {
+    next(new Error('not implemented'));
+  })
+  .put((req, res, next) => controller.update)
+  .patch((req, res, next) => controller.update)
+  .delete((req, res, next) => controller.destroy);
+
+<%-route%>Routes.get('/new', (req, res, next) => controller.new);
+<%-route%>Routes.get('/edit/:id', (req, res, next) => controller.edit);
+
+module.exports = <%-route%>Routes;
