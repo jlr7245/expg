@@ -2,6 +2,9 @@
   "name": "expg-new",
   "version": "0.0.0",
   "description": "a new version of the express generator",
+  "bin": {
+    "expg": "./bin/expg.js"
+  },
   "main": "./bin/expg.js",
   "directories": {
     "test": "test"
